@@ -8,7 +8,7 @@ export const products: Product[] = [
     name: "Apex-7",
     shortDescription: "750W all-terrain e-bike for city climbs and gravel routes",
     description: "The Apex-7 pairs a 750W mid-drive motor with 95Nm of torque and a 720Wh battery. Its 120mm front suspension, hydraulic brakes, and 29-inch tires are built for paved commutes that continue onto gravel and hardpack trails.",
-    images: ["/images/apex-7/front.svg", "/images/apex-7/side.svg"],
+    images: ["/images/apex-7/front.jpg", "/images/apex-7/side.jpg"],
     category: "all-terrain",
     specs: {
       motor: "Bafang M620 750W",
@@ -59,7 +59,7 @@ export const products: Product[] = [
     name: "Stealth‑R",
     shortDescription: "Quiet belt-drive commuter for fast city miles",
     description: "The Stealth-R uses a 350W rear hub motor, a 500Wh battery, and a Gates CDX belt drive for quiet daily commuting. Integrated lights, hydraulic disc brakes, and puncture-resistant 27.5-inch tires keep the setup practical for urban riding.",
-    images: ["/images/stealth-r/front.svg", "/images/stealth-r/side.svg"],
+    images: ["/images/stealth-r/front.jpg", "/images/stealth-r/side.jpg"],
     category: "commuter",
     specs: {
       motor: "350W Hub Motor",

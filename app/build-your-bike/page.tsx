@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { accessories } from "@/data/accessories";
 import { products } from "@/data/products";
 import { useCart } from "@/lib/cart-context";
@@ -123,6 +124,9 @@ export default function BuildYourBikePage() {
 
         <aside className="lg:sticky lg:top-24 lg:self-start">
           <Card className="p-6">
+            <div className="relative mb-5 aspect-[4/3] overflow-hidden bg-background">
+              <Image src={model.images[0]} alt={`${model.name} ${model.category} electric bike`} fill sizes="(max-width: 1024px) 100vw, 360px" className="object-cover" />
+            </div>
             <p className="text-sm uppercase tracking-[0.16em] text-gray-400">Your build</p>
             <h2 className="mt-2 font-display text-3xl text-primary">{model.name}</h2>
             <dl className="mt-5 space-y-3 text-sm">

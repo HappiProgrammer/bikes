@@ -10,7 +10,7 @@ export default function Hero() {
     <section className="relative h-screen min-h-[600px] overflow-hidden rounded-lg shadow-lg mb-12">
       {/* Background image (replace with actual bike hero) */}
       <Image
-        src="/images/hero-bike.svg"
+        src="/images/hero-bike.jpg"
         alt="KINETIX Apex-7 electric bike on a city-to-trail route"
         fill
         className="object-cover brightness-75"

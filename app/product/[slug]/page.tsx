@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div className="flex flex-col space-y-4">
           {product.images.map((src, idx) => (
             <Card key={idx} className="overflow-hidden rounded-lg shadow-lg">
-              <Image src={src} alt={product.name} width={800} height={600} className="object-cover w-full h-auto" />
+              <Image src={src} alt={`${product.name} electric bike ${idx === 0 ? "front view" : "side view"}`} width={800} height={600} className="object-cover w-full h-auto" />
             </Card>
           ))}
         </div>

@@ -20,7 +20,7 @@ export default function ModelLineup() {
               <div className="relative h-48 w-full">
                 <Image
                   src={p.images[0]}
-                  alt={p.name}
+                  alt={`${p.name} ${p.category} electric bike`}
                   fill
                   className="object-cover w-full h-full rounded-t-lg"
                 />
