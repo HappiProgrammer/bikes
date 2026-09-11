@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { accessories } from "@/data/accessories";
 import { products } from "@/data/products";
 import Card from "@/components/ui/Card";
@@ -24,6 +25,11 @@ export default function AccessoriesPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {accessories.map((accessory) => (
           <Card key={accessory.id} className="flex flex-col p-5">
+            {accessory.image && (
+              <div className="relative -mx-5 -mt-5 mb-5 aspect-[4/3] overflow-hidden bg-background">
+                <Image src={accessory.image} alt={accessory.imageAlt ?? accessory.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              </div>
+            )}
             <p className="text-xs uppercase tracking-[0.16em] text-primary">{categoryLabels[accessory.category]}</p>
             <h2 className="mt-3 font-display text-2xl text-onSurface">{accessory.name}</h2>
             <p className="mt-3 flex-1 text-sm leading-6 text-gray-300">{accessory.description}</p>
