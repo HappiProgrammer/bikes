@@ -10,7 +10,7 @@ export default function ModelLineup() {
   const products = getProducts();
 
   return (
-    <section className="py-12 bg-surface">
+    <section id="models" className="py-12 bg-surface">
       <h2 className="font-display text-3xl text-center text-primary mb-8">Our Models</h2>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto px-4">
         {products.map((p) => (

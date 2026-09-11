@@ -2,12 +2,14 @@
 // components/layout/Navbar.tsx
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCart } from "../../lib/cart-context";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "../ui/Button";
 
 export default function Navbar() {
   const { itemCount } = useCart();
+  const router = useRouter();
 
   return (
     <nav className="sticky top-0 z-50 bg-surface text-onSurface shadow-md backdrop-blur-md">
@@ -34,7 +36,12 @@ export default function Navbar() {
         </div>
 
         {/* Cart icon with live count */}
-        <Button variant="outline" className="relative flex items-center">
+        <Button
+          variant="outline"
+          className="relative flex items-center"
+          onClick={() => router.push("/cart")}
+          aria-label="Open shopping cart"
+        >
           <ShoppingCart className="h-5 w-5" />
           {itemCount > 0 && (
             <span className="absolute -top-1 -right-1 bg-primary rounded-full text-xs px-1.5 py-0.5 text-onSurface">
