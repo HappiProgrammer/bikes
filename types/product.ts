@@ -11,18 +11,19 @@ export interface Variant {
 }
 
 export interface SpecSheet {
-  motor: string;
-  battery: string;
-  range: string; // e.g., "85mi"
-  topSpeed: string; // e.g., "28mph"
-  weight: string;
-  torque: string;
-  class: string;
-  frameSizes: string;
-  wheelSize: string;
-  chargeTime: string;
-  payload: string;
-  assistLevels: string;
+  motor?: string;
+  battery?: string;
+  range?: string;
+  topSpeed?: string;
+  weight?: string;
+  torque?: string;
+  class?: string;
+  frameSizes?: string;
+  wheelSize?: string;
+  chargeTime?: string;
+  payload?: string;
+  assistLevels?: string;
+  categorySpecific?: Record<string, string>;
 }
 
 export interface Product {
@@ -33,7 +34,7 @@ export interface Product {
   images: string[]; // paths relative to /public/images
   specs: SpecSheet;
   variants: Variant[];
-  category: "commuter" | "all-terrain";
-  bikeType: "all-terrain e-bike" | "urban commuter e-bike";
-  compatibleAccessories: string[];
+  category: "commuter" | "all-terrain" | "mobility-scooters" | "labubu";
+  bikeType?: "all-terrain e-bike" | "urban commuter e-bike";
+  compatibleAccessories?: string[];
 }

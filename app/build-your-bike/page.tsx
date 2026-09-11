@@ -22,11 +22,12 @@ export default function BuildYourBikePage() {
   const [wheelSize, setWheelSize] = useState("29 in");
   const [selectedAccessories, setSelectedAccessories] = useState<string[]>([]);
 
-  const model = products.find((product) => product.slug === modelSlug) ?? products[0];
-  const availableFrameSizes = model.specs.frameSizes.split(" / ");
-  const availableWheelSize = model.specs.wheelSize.startsWith("27.5") ? "27.5 in" : "29 in";
+  const bikeProducts = products.filter((product) => product.bikeType);
+  const model = bikeProducts.find((product) => product.slug === modelSlug) ?? bikeProducts[0];
+  const availableFrameSizes = (model.specs.frameSizes ?? "S / M / L / XL").split(" / ");
+  const availableWheelSize = (model.specs.wheelSize ?? "29 in").startsWith("27.5") ? "27.5 in" : "29 in";
   const compatibleAccessories = accessories.filter((accessory) =>
-    model.compatibleAccessories.includes(accessory.id)
+    (model.compatibleAccessories ?? []).includes(accessory.id)
   );
   const selectedAccessoryTotal = compatibleAccessories
     .filter((accessory) => selectedAccessories.includes(accessory.id))
@@ -84,7 +85,7 @@ export default function BuildYourBikePage() {
           <Card className="p-6">
             <h2 className="font-display text-2xl text-primary">1. Choose your motor platform</h2>
             <div className="mt-4 grid gap-4 md:grid-cols-2">
-              {products.map((product) => (
+              {bikeProducts.map((product) => (
                 <label key={product.slug} className={`cursor-pointer border p-4 ${modelSlug === product.slug ? "border-primary bg-primary/10" : "border-gray-700"}`}>
                   <input type="radio" name="model" value={product.slug} checked={modelSlug === product.slug} onChange={() => { setModelSlug(product.slug); setFrameSize(product.slug === "apex-7" ? "M" : "S"); setWheelSize(product.slug === "apex-7" ? "29 in" : "27.5 in"); setSelectedAccessories([]); }} className="sr-only" />
                   <span className="font-display text-xl">{product.name}</span>

@@ -24,6 +24,15 @@ export default function Navbar() {
           <Link href="/shop" className="hover:text-primaryDark transition-colors">
             Shop
           </Link>
+          <Link href="/shop?category=commuter" className="hover:text-primaryDark transition-colors">
+            E-Bikes
+          </Link>
+          <Link href="/shop?category=mobility-scooters" className="hover:text-primaryDark transition-colors">
+            Scooters
+          </Link>
+          <Link href="/shop?category=labubu" className="hover:text-primaryDark transition-colors">
+            Collectibles
+          </Link>
           <Link href="/build-your-bike" className="hover:text-primaryDark transition-colors">
             Build Your Bike
           </Link>
