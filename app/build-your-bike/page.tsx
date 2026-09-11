@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { accessories } from "@/data/accessories";
 import { products } from "@/data/products";
@@ -23,8 +23,10 @@ export default function BuildYourBikePage() {
   const [selectedAccessories, setSelectedAccessories] = useState<string[]>([]);
 
   const model = products.find((product) => product.slug === modelSlug) ?? products[0];
+  const availableFrameSizes = model.specs.frameSizes.split(" / ");
+  const availableWheelSize = model.specs.wheelSize.startsWith("27.5") ? "27.5 in" : "29 in";
   const compatibleAccessories = accessories.filter((accessory) =>
-    accessory.compatibleWith.includes(model.slug)
+    model.compatibleAccessories.includes(accessory.id)
   );
   const selectedAccessoryTotal = compatibleAccessories
     .filter((accessory) => selectedAccessories.includes(accessory.id))
@@ -33,12 +35,23 @@ export default function BuildYourBikePage() {
   const totalPrice = basePrice + selectedAccessoryTotal;
   const variantId = `${model.slug}-${frameSize.toLowerCase()}-${color.toLowerCase().replaceAll(" ", "-")}`;
 
-  const selectedAccessoryNames = useMemo(
-    () => compatibleAccessories
-      .filter((accessory) => selectedAccessories.includes(accessory.id))
-      .map((accessory) => accessory.name),
-    [compatibleAccessories, selectedAccessories]
-  );
+  const selectedAccessoryNames = compatibleAccessories
+    .filter((accessory) => selectedAccessories.includes(accessory.id))
+    .map((accessory) => accessory.name);
+
+  const fitWarning = !availableFrameSizes.includes(frameSize)
+    ? `${model.name} is available in ${model.specs.frameSizes}. Choose a listed frame size.`
+    : wheelSize !== availableWheelSize
+      ? `${model.name} is designed around ${model.specs.wheelSize}. The selected wheel size is not compatible.`
+      : null;
+
+  const resetBuild = () => {
+    setModelSlug("apex-7");
+    setFrameSize("M");
+    setColor("Carbon Black");
+    setWheelSize("29 in");
+    setSelectedAccessories([]);
+  };
 
   const toggleAccessory = (accessoryId: string) => {
     setSelectedAccessories((current) => current.includes(accessoryId)
@@ -73,7 +86,7 @@ export default function BuildYourBikePage() {
             <div className="mt-4 grid gap-4 md:grid-cols-2">
               {products.map((product) => (
                 <label key={product.slug} className={`cursor-pointer border p-4 ${modelSlug === product.slug ? "border-primary bg-primary/10" : "border-gray-700"}`}>
-                  <input type="radio" name="model" value={product.slug} checked={modelSlug === product.slug} onChange={() => { setModelSlug(product.slug); setSelectedAccessories([]); }} className="sr-only" />
+                  <input type="radio" name="model" value={product.slug} checked={modelSlug === product.slug} onChange={() => { setModelSlug(product.slug); setFrameSize(product.slug === "apex-7" ? "M" : "S"); setWheelSize(product.slug === "apex-7" ? "29 in" : "27.5 in"); setSelectedAccessories([]); }} className="sr-only" />
                   <span className="font-display text-xl">{product.name}</span>
                   <span className="mt-1 block text-xs font-medium uppercase tracking-[0.12em] text-primary">{product.bikeType}</span>
                   <span className="mt-2 block text-sm text-gray-300">{product.specs.motor} · {product.specs.battery} · {product.specs.range}</span>
@@ -88,7 +101,7 @@ export default function BuildYourBikePage() {
             <div className="mt-5 grid gap-5 md:grid-cols-3">
               <label className="text-sm text-gray-300">Frame size
                 <select value={frameSize} onChange={(event) => setFrameSize(event.target.value)} className="mt-2 w-full border border-gray-600 bg-background p-3 text-onSurface">
-                  {buildOptions.frameSizes.map((option) => <option key={option}>{option}</option>)}
+                  {buildOptions.frameSizes.map((option) => <option key={option} disabled={!availableFrameSizes.includes(option)}>{option}{!availableFrameSizes.includes(option) ? " (unavailable)" : ""}</option>)}
                 </select>
               </label>
               <label className="text-sm text-gray-300">Color / finish
@@ -98,11 +111,12 @@ export default function BuildYourBikePage() {
               </label>
               <label className="text-sm text-gray-300">Wheel size
                 <select value={wheelSize} onChange={(event) => setWheelSize(event.target.value)} className="mt-2 w-full border border-gray-600 bg-background p-3 text-onSurface">
-                  {buildOptions.wheelSizes.map((option) => <option key={option}>{option}</option>)}
+                  {buildOptions.wheelSizes.map((option) => <option key={option} disabled={option !== availableWheelSize}>{option}{option !== availableWheelSize ? " (unavailable)" : ""}</option>)}
                 </select>
               </label>
             </div>
             <p className="mt-4 text-sm text-gray-400">The {model.name} is engineered around {model.specs.wheelSize}, with frame sizing available from {model.specs.frameSizes}.</p>
+            {fitWarning && <p className="mt-3 border border-amber-400/50 bg-amber-400/10 p-3 text-sm text-amber-200">{fitWarning}</p>}
           </Card>
 
           <Card className="p-6">
@@ -112,8 +126,9 @@ export default function BuildYourBikePage() {
               {compatibleAccessories.map((accessory) => (
                 <label key={accessory.id} className="flex cursor-pointer items-start gap-3 border border-gray-700 p-4">
                   <input type="checkbox" checked={selectedAccessories.includes(accessory.id)} onChange={() => toggleAccessory(accessory.id)} className="mt-1 accent-primary" />
-                  <span>
+                  <span className="flex-1">
                     <span className="block font-medium">{accessory.name}</span>
+                    {accessory.image && <Image src={accessory.image} alt="" width={96} height={64} className="mt-3 h-16 w-24 object-cover" />}
                     <span className="mt-1 block text-sm text-gray-400">{accessory.description}</span>
                     <span className="mt-2 block text-sm text-primary">+ ${(accessory.priceCents / 100).toLocaleString()}</span>
                   </span>
@@ -140,7 +155,8 @@ export default function BuildYourBikePage() {
             </dl>
             <div className="mt-6 border-t border-gray-700 pt-5">
               <div className="flex justify-between text-xl"><span>Total</span><span className="text-primary">${(totalPrice / 100).toLocaleString()}</span></div>
-              <Button onClick={addBuildToCart} className="mt-5 w-full">Add configured e-bike</Button>
+              <Button onClick={addBuildToCart} disabled={Boolean(fitWarning)} className="mt-5 w-full">Add configured e-bike</Button>
+              <button type="button" onClick={resetBuild} className="mt-3 w-full text-sm text-gray-400 underline underline-offset-4 hover:text-primary">Reset build</button>
             </div>
           </Card>
         </aside>
