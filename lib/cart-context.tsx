@@ -1,5 +1,6 @@
 // lib/cart-context.tsx
 
+"use client";
 import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { Product, Variant } from "../types/product";
 

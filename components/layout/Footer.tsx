@@ -1,9 +1,9 @@
-// components/layout/Footer.tsx
+"use client";
 
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 

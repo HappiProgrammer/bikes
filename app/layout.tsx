@@ -8,7 +8,7 @@ import Footer from "../components/layout/Footer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
+  weight: ["400", "500", "700"],
   variable: "--font-display",
 });
 
