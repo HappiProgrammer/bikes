@@ -43,6 +43,11 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/about" className="hover:text-primaryDark transition-colors">
+                About KINETIX
+              </Link>
+            </li>
+            <li>
               <Link href="/shop" className="hover:text-primaryDark transition-colors">
                 Shop
               </Link>
@@ -50,6 +55,11 @@ export default function Footer() {
             <li>
               <Link href="/build-your-bike" className="hover:text-primaryDark transition-colors">
                 Build Your Bike
+              </Link>
+            </li>
+            <li>
+              <Link href="/accessories" className="hover:text-primaryDark transition-colors">
+                E-Bike Accessories
               </Link>
             </li>
             <li>
@@ -86,7 +96,7 @@ export default function Footer() {
         <div>
           <h3 className="font-display text-lg mb-4">Stay Updated</h3>
           <p className="text-sm mb-3 font-body">
-            Get the latest news, releases, and exclusive offers.
+            Get battery-care tips, new model releases, and practical e-bike riding advice.
           </p>
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
             <Input

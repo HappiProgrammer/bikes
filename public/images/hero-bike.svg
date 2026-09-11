@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">KINETIX electric bike</title>
+  <desc id="desc">A lime and graphite electric bicycle silhouette on a dark background.</desc>
+  <rect width="1200" height="700" fill="#0a0c0e"/>
+  <path d="M0 560h1200" stroke="#303840" stroke-width="4"/>
+  <g fill="none" stroke="#d4ff00" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="350" cy="505" r="115"/><circle cx="875" cy="505" r="115"/>
+    <path d="M350 505l150-190 140 190m-140-190h170l205 190m-375-190-70-75m70 75h-90m160 190h160m-160 0-55-190m215 0 70-65"/>
+  </g>
+  <path d="M470 330h145l55 88H455z" fill="#94a3b8" stroke="#d4ff00" stroke-width="7"/>
+  <rect x="530" y="305" width="105" height="28" rx="10" fill="#ff6f00"/>
+  <circle cx="635" cy="420" r="36" fill="#ff6f00" stroke="#d4ff00" stroke-width="8"/>
+  <path d="M820 300h95m-45 0 35 42" stroke="#d4ff00" stroke-width="12" stroke-linecap="round"/>
+  <text x="70" y="110" fill="#ffffff" font-family="Arial, sans-serif" font-size="34" letter-spacing="8">KINETIX E-BIKE SYSTEMS</text>
+</svg>

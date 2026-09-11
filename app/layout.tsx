@@ -18,13 +18,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "KINETIX – Premium E‑Bike Brand",
     description: "Bold, kinetic electric bikes for adventure and city life.",
-    images: [{ url: "/images/og-image.jpg" }],
+    images: [{ url: "/images/og-image.svg" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "KINETIX – Premium E‑Bike Brand",
     description: "Bold, kinetic electric bikes for adventure and city life.",
-    images: ["/images/og-image.jpg"],
+    images: ["/images/og-image.svg"],
   },
 };
 

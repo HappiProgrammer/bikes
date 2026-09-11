@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Card } from "../ui/Card";
 import { Badge } from "../ui/Badge";
 import { getProducts } from "../../lib/data";
@@ -17,9 +18,10 @@ export default function ModelLineup() {
           <Card key={p.slug} className="hover:shadow-xl transition-shadow">
             <Link href={`/product/${p.slug}`}>
               <div className="relative h-48 w-full">
-                <img
+                <Image
                   src={p.images[0]}
                   alt={p.name}
+                  fill
                   className="object-cover w-full h-full rounded-t-lg"
                 />
               </div>
@@ -30,6 +32,8 @@ export default function ModelLineup() {
                 <p className="text-sm text-onSurface mb-2 line-clamp-2">
                   {p.shortDescription}
                 </p>
+                <p className="text-xs leading-5 text-gray-400">{p.specs.motor} · {p.specs.battery} · {p.specs.range}</p>
+                <p className="mt-2 text-sm font-medium text-primary">From ${(p.variants[0].priceCents / 100).toLocaleString()}</p>
                 <Badge variant="primary">{p.category}</Badge>
               </div>
             </Link>

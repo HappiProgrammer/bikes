@@ -4,9 +4,10 @@ export interface Variant {
   id: string;
   name: string; // e.g., "Standard", "Pro", "Long Range"
   priceCents: number; // price in cents
-  priceId?: string; // Stripe price ID placeholder
+  priceId?: string;
   color?: string;
   frameSize?: string;
+  accessoryIds?: string[];
 }
 
 export interface SpecSheet {
@@ -14,8 +15,14 @@ export interface SpecSheet {
   battery: string;
   range: string; // e.g., "85mi"
   topSpeed: string; // e.g., "28mph"
-  weight: string; // e.g., "28.5 lbs"
-  torque?: string;
+  weight: string;
+  torque: string;
+  class: string;
+  frameSizes: string;
+  wheelSize: string;
+  chargeTime: string;
+  payload: string;
+  assistLevels: string;
 }
 
 export interface Product {
@@ -26,5 +33,6 @@ export interface Product {
   images: string[]; // paths relative to /public/images
   specs: SpecSheet;
   variants: Variant[];
-  category: string; // e.g., "commuter", "mtb", "accessory"
+  category: "commuter" | "all-terrain";
+  compatibleAccessories: string[];
 }
