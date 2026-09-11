@@ -1,3 +1,5 @@
+"use client";
+
 // components/ui/Card.tsx
 
 import { motion } from "framer-motion";
