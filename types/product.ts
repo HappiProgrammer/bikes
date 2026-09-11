@@ -34,5 +34,6 @@ export interface Product {
   specs: SpecSheet;
   variants: Variant[];
   category: "commuter" | "all-terrain";
+  bikeType: "all-terrain e-bike" | "urban commuter e-bike";
   compatibleAccessories: string[];
 }

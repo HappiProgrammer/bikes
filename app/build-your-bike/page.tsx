@@ -75,6 +75,7 @@ export default function BuildYourBikePage() {
                 <label key={product.slug} className={`cursor-pointer border p-4 ${modelSlug === product.slug ? "border-primary bg-primary/10" : "border-gray-700"}`}>
                   <input type="radio" name="model" value={product.slug} checked={modelSlug === product.slug} onChange={() => { setModelSlug(product.slug); setSelectedAccessories([]); }} className="sr-only" />
                   <span className="font-display text-xl">{product.name}</span>
+                  <span className="mt-1 block text-xs font-medium uppercase tracking-[0.12em] text-primary">{product.bikeType}</span>
                   <span className="mt-2 block text-sm text-gray-300">{product.specs.motor} · {product.specs.battery} · {product.specs.range}</span>
                   <span className="mt-3 block text-sm text-primary">From ${(product.variants[0].priceCents / 100).toLocaleString()}</span>
                 </label>
@@ -129,6 +130,7 @@ export default function BuildYourBikePage() {
             </div>
             <p className="text-sm uppercase tracking-[0.16em] text-gray-400">Your build</p>
             <h2 className="mt-2 font-display text-3xl text-primary">{model.name}</h2>
+            <p className="mt-1 text-sm uppercase tracking-[0.12em] text-gray-400">{model.bikeType}</p>
             <dl className="mt-5 space-y-3 text-sm">
               <div className="flex justify-between gap-4"><dt className="text-gray-400">Motor</dt><dd>{model.specs.motor}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-400">Battery</dt><dd>{model.specs.battery}</dd></div>

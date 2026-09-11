@@ -15,6 +15,7 @@ export default function ProductDetails({ product }: { product: Product }) {
   return (
     <div className="flex flex-col space-y-6">
       <h1 className="text-4xl font-bold text-primary-volt">{product.name}</h1>
+      <p className="text-sm font-medium uppercase tracking-[0.12em] text-primary">{product.bikeType}</p>
       <p className="text-lg text-gray-300">{product.description}</p>
       <div className="text-2xl font-semibold text-primary-volt">
         Starting at ${product.variants[0].priceCents / 100}

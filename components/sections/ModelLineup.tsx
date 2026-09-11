@@ -29,6 +29,7 @@ export default function ModelLineup() {
                 <h3 className="font-display text-xl text-onSurface mb-2">
                   {p.name}
                 </h3>
+                <p className="text-sm font-medium uppercase tracking-[0.12em] text-primary">{p.bikeType}</p>
                 <p className="text-sm text-onSurface mb-2 line-clamp-2">
                   {p.shortDescription}
                 </p>
